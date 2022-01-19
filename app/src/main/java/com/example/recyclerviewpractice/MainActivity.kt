@@ -10,18 +10,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
 
+    val todoList = listOf(
+        "宿題", "掃除",
+        "選択", "メール",
+        "読書", "アニメ見る",
+        "Kotlinの勉強", "散歩",
+        "📱買い替え", "ゲーム"
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupRecyclerView()
+    }
 
-        val todoList = listOf(
-            "宿題", "掃除",
-            "選択", "メール",
-            "読書", "アニメ見る",
-            "Kotlinの勉強", "散歩",
-            "📱買い替え", "ゲーム"
-        )
-
+    private fun setupRecyclerView() {
         recyclerView = findViewById(R.id.RecyclerList)
         recyclerView.adapter = ToDoAdapter(todoList)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -30,4 +33,5 @@ class MainActivity : AppCompatActivity() {
             DividerItemDecoration(this , LinearLayoutManager(this).getOrientation())
         recyclerView.addItemDecoration(dividerItemDecoration)
     }
+
 }
