@@ -8,9 +8,11 @@ class ToDoAdapter(private val list: List<String>): RecyclerView.Adapter<ViewHold
 
     // レイアウト生成
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderList {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.text_row_item, parent, false
-        )
-        return ViewHolderList(itemView)
+        // スタティックメソッドのfromを使ってインスタンス生成
+        val inflater = LayoutInflater.from(parent.context)
+        // inflateメソッドでXMLファイルから画面生成
+        val view = inflater.inflate(R.layout.text_row_item, parent, false)
+        return ViewHolderList(view)
     }
 
     // ViewHolderを結ぶ
