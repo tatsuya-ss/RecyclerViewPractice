@@ -5,12 +5,14 @@ import android.os.Bundle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewpractice.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var recyclerView: RecyclerView
 
-    val todoList = listOf(
+    var todoList = listOf(
         "宿題", "掃除",
         "選択", "メール",
         "読書", "アニメ見る",
@@ -21,7 +23,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupBinding()
+        setupButton()
         setupRecyclerView()
+    }
+
+    private fun setupBinding() {
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     private fun setupRecyclerView() {
@@ -32,6 +41,16 @@ class MainActivity : AppCompatActivity() {
         val dividerItemDecoration =
             DividerItemDecoration(this , LinearLayoutManager(this).getOrientation())
         recyclerView.addItemDecoration(dividerItemDecoration)
+    }
+
+    private fun setupButton() {
+        binding.addButton.setOnClickListener {
+            todoList += "サッカー"
+            println(todoList)
+            val adapter = recyclerView.adapter as ToDoAdapter
+            adapter.setList(todoList)
+            adapter.notifyDataSetChanged()
+        }
     }
 
 }

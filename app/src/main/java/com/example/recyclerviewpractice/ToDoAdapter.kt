@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class ToDoAdapter(private val list: List<String>): RecyclerView.Adapter<ViewHolderList>() {
+class ToDoAdapter(private var list: List<String>): RecyclerView.Adapter<ViewHolderList>() {
 
     // レイアウト生成
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderList {
@@ -22,6 +22,10 @@ class ToDoAdapter(private val list: List<String>): RecyclerView.Adapter<ViewHold
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun setList(list: List<String>) {
+        this.list = list
     }
 
 }
